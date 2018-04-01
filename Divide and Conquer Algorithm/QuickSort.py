@@ -51,7 +51,11 @@ def ChoosePivot_Last(array, n):
 def ChoosePivot_MedianOfThree(array, n):
     firstValue = array[0]
     lastValue = array[-1]
-    medianValue = array[int(len(array)/2) - 1]
+    if n % 2 == 0:
+        medianIndex = int(n/2)-1
+    else :
+        medianIndex = int(n/2)
+    medianValue = array[medianIndex]
 
     if firstValue < lastValue:
         if medianValue < firstValue:
@@ -59,16 +63,16 @@ def ChoosePivot_MedianOfThree(array, n):
         elif medianValue > lastValue:
             return (lastValue, len(array)-1)
         else:
-            return (medianValue, int(len(array)/2) -1)
+            return (medianValue, medianIndex)
     else:
         if medianValue < lastValue:
             return (lastValue, len(array) -1)
         elif medianValue > firstValue:
             return (firstValue, 0)
         else:
-            return (medianValue, int(len(array)/2) -1)
+            return (medianValue, medianIndex)
 
-# array = [3,8,2,5,1,4,7,6]
+# array = [2, 20, 1, 15, 3, 11, 13, 6, 16, 10, 19, 5, 4, 9, 8, 14, 18, 17, 7, 12] 
 array = []
 with open("E:\Practice-of-Algorithm\Practice-of-Algorithm\Divide and Conquer Algorithm\QuickSort.txt",'r') as f:
     for line in f.readlines():
