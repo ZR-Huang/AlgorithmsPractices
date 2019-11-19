@@ -1,10 +1,10 @@
-# Practice-of-Algorithm-diagram
+# Practice-of-Algorithm
 
-> 主要用于存放自己在学习算法的过程中，练习的代码，以供今后 review，并继续优化改进。
+> This repository is used to store the code I implemented when I learn about algorithm. 
 
-## 《算法图解》练习：
+## Source code of Grokking Algorithms：
 
-​	是我在看[《算法图解》](https://book.douban.com/subject/26979890/)的时候，根据书本上的例子，所练习的代码，基本与书本上的所给的示例代码相差不大。
+    The practiced source code when I read [<Grokking Algorithms>](https://book.douban.com/subject/26979890/), which are almost similar to the examples presented in the book.
 
 
 
