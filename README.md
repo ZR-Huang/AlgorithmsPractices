@@ -21,12 +21,6 @@
 
 ## Leetcode
 
-主要存放了，我在[LeetCode](https://leetcode.com/)上练习所写的代码。
+This folder keeps all the resolution code of [LeetCode](https://leetcode.com/) I wrote, which includes the comprehension of the problems.
 
-文件命名格式：自己的编号.题目名称(网站上对应的编号)[网站上对应难度]
-
-
-
-## Example
-
-主要是一些自己学习算法的过程中，实现的基本代码。
+The format of file names：The number of the problem in website_the name of problem
