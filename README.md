@@ -4,7 +4,7 @@
 
 ## Source code of Grokking Algorithms：
 
-    The practiced source code when I read [<Grokking Algorithms>](https://book.douban.com/subject/26979890/), which are almost similar to the examples presented in the book.
+The practiced source code when I read <[Grokking Algorithms](https://book.douban.com/subject/26979890/)>, which are almost similar to the examples presented in the book.
 
 
 
