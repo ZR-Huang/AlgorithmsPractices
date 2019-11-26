@@ -31,7 +31,14 @@ Note: This main function of the code is to compute the number of the comparison 
 
 ### Week 4
 
-4. RandomizedContraction.py 是第四周的内容，第四周主要介绍了随机选择算法，和图的表示，以及求解图的最小割集（通过 Random Contraction Algorithm)。该算法能成功求得最小割集的概率是$2/n(n-1)$，虽然看起来是小概率，但是已经算不错的结果，对于 Program Problem 中的问题（规模200个顶点），重复运行了十几次后能得到正确答案。数据集是kargerTestcase.txt（小规模），kargerTestcase2.txt（小规模），kargerMinCut.txt（Program Problem的数据集）。
+- The Random Selection algorithm and the presentation of graphs are introduced in this week.
+- The implementation of counting the minimum cuts of a graph using the Random Contraction algorithm. Here are the input data sets you will need.
+    1. Week4_RandomizedContraction.py (code)
+    2. Week4_kargerTestcase.txt (small scale)
+    3. Week4_kargerTestcase2.txt (small scale)
+    4. Week4_kargerMinCut.txt (the dataset of the weekly quiz)
+
+Note: The probability of the Random Contraction algorithm is 2/[n(n-1)]. It is a pretty good result though it looks small. As for the problem of the weekly quiz which has 200 vetices, the program can return the correct answer after running several times.
 
 
 ## Leetcode
