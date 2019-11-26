@@ -1,6 +1,6 @@
-# Practice-of-Algorithm
+# Algorithms Practices
 
-> This repository is used to store the code I implemented when I learn about algorithm. 
+> This repository is used to store the codes I implemented when I learn about algorithm. 
 
 ## Source code of Grokking Algorithms
 
@@ -46,12 +46,19 @@ Note: The probability of the Random Contraction algorithm is 2/[n(n-1)]. It is a
 This folder keeps all the resolution code of [LeetCode](https://leetcode.com/) I wrote, which includes the comprehension of the problems.
 
 The format of file names：The number of the problem in website_the name of problem
-
-- Leetcode
+```
+The structure of the folder
+--Leetcode
     |
     |- Basic : The Subject of Basic Algorithm in the Leetcode Explore
     |- Competition : The resolutions of the weekly competitions
+```
 
 ## Templates
 
 The implementation of the basic functions of different algorithms which can be quickly modified and used in the competitions.
+
+### Implemented
+- Trie Tree
+- Dynamic Programming
+- Dictionary Order Algorithm
