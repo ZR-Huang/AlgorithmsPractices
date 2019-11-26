@@ -33,7 +33,7 @@ class Trie():
 
     
     def get_start(self, prefix):
-        def _get_key(pre, pre_node):
+        def _get_key(pre, pre_node): # 这里的DFS写得不好，需要根据具体问题修改一下
             words_list = []
             if pre_node.is_word:
                 words_list.append(pre)
@@ -44,9 +44,9 @@ class Trie():
         words = []
         if not self.starts_with(prefix):
             return words
-        if self.search(prefix):
-            words.append(prefix)
-            return words
+        # if self.search(prefix):
+        #     words.append(prefix)
+        #     return words
         node = self.root
         for c in prefix:
             node = node.data[c]

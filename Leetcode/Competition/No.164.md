@@ -212,9 +212,198 @@ class Solution:
 - `searchWord 中所有字符都是小写英文字母。`
 
 ### 解题思路：
+方法一：
 
+首先对所有产品按字典序排序。按照输入的`searchWord`的字符串顺序，匹配`products`，符合要求的就加入
+到结果的列表中。
 
 
 ```python
+class Solution:
+    def suggestedProducts(self, products, searchWord):
+        result = [[] for _ in range(len(searchWord))]
+        products = sorted(products)
 
+        for i in range(1, len(searchWord)+1):
+            for prod in products:
+                if searchWord[:i] == prod[:i] and len(result[i-1]) < 3:
+                    result[i-1].append(prod)
+                if len(result[i-1]) == 3:
+                    break
+
+        return result
+```
+
+方法二：
+
+建立前缀树，来搜索与输入关键词匹配的`products`序列。
+
+```python
+class TrieNode():
+    def __init__(self):
+        self.is_word = False
+        self.data = {}
+        self.count = 0 # 在题目测试样例中，会出现重复的单词
+
+class Trie():
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        node = self.root
+        for c in word:
+            if c not in node.data:
+                node.data[c] = TrieNode()
+            node = node.data[c]
+        node.is_word = True
+        node.count += 1
+    
+    def search(self, word):
+        node = self.root
+        for c in word:
+            node = node.data.get(c)
+            if not node:
+                return False
+        return node.is_word
+
+    def starts_with(self, prefix):
+        node = self.root
+        for c in prefix:
+            node = node.data.get(c)
+            if not node:
+                return False
+        return True
+
+    
+    def get_start(self, prefix):
+        def _get_key(pre, pre_node, words_list):
+            if pre_node.is_word:
+                for _ in range(pre_node.count):
+                    if len(words_list) == 3:
+                        return
+                    words_list.append(pre)
+                    
+            for x in sorted(pre_node.data.keys()):
+                if len(words_list) == 3:
+                    break
+                _get_key(pre + x, pre_node.data[x], words_list)
+    
+        words = []
+        if not self.starts_with(prefix):
+            return words
+
+        node = self.root
+        for c in prefix:
+            node = node.data[c]
+
+        _get_key(prefix, node, words)
+
+        return words
+
+class Solution:
+    def suggestedProducts(self, products, searchWord):
+        result = []
+        t = Trie()
+
+        for prod in products:
+            t.insert(prod)
+        
+        for i in range(1, len(searchWord)+1):
+            result.append(t.get_start(searchWord[:i]))
+
+        return result
+```
+
+方法三：
+
+来自运行时间排名第二的代码。巧妙地设计了一个指针cur，在完成一次匹配之后，下次只需要从完成这次匹配的
+前两个单词进行检查即可，而不是每次都重新开始遍历数组。
+
+```python
+class Solution:
+    def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
+        products.sort()
+        ans=[[] for _ in range(len(searchWord))]
+        cur=0
+        for i in range(len(searchWord)):
+            k=3
+            for j in range(cur,len(products)):
+                if products[j][:i+1]==searchWord[:i+1]:
+                    ans[i]+=[products[j]]
+                    k-=1
+                if k==0:
+                    cur=j-2
+                    break
+            if ans[i]==[]:
+                return ans
+        return ans
+```
+
+## [Unsolved] 1269.停在原地的方案数
+
+### 题目描述：
+有一个长度为 `arrLen` 的数组，开始有一个指针在索引 `0` 处。
+
+每一步操作中，你可以将指针向左或向右移动 1 步，或者停在原地（指针不能被移动到数组范围外）。
+
+给你两个整数 `steps` 和 `arrLen` ，请你计算并返回：在恰好执行 `steps` 次操作以后，指针仍然指向索引 0 处的方案数。
+
+由于答案可能会很大，请返回方案数 模 `10^9 + 7` 后的结果。
+
+### 示例1:
+
+```
+输入：steps = 3, arrLen = 2
+输出：4
+解释：3 步后，总共有 4 种不同的方法可以停在索引 0 处。
+向右，向左，不动
+不动，向右，向左
+向右，不动，向左
+不动，不动，不动
+```
+
+### 示例2:
+
+```
+输入：steps = 2, arrLen = 4
+输出：2
+解释：2 步后，总共有 2 种不同的方法可以停在索引 0 处。
+向右，向左
+不动，不动
+```
+
+### 示例3:
+
+```
+输入：steps = 4, arrLen = 2
+输出：8
+```
+
+### 约束条件：
+- `1 <= steps <= 500`
+- `1 <= arrLen <= 10^6`
+
+### 解题思路：
+可以用动态规划，将题目分解为`dp(steps, current_pos)`，表示移动`steps`步到达当前位置`current_pos`。因此，可以得出一般情况下的转移矩阵
+`dp(steps, current_pos)=dp(steps-1, current_pos-1)+dp(steps-1, current_pos)+dp(step-1, current-pos+1)`。
+- 当`current_pos=0`时，`dp(steps, current_pos)=dp(steps-1, current_pos)+dp(step-1, current-pos+1)`
+- 当`current_pos=arrLen-1`时，`dp(steps, current_pos)=dp(steps-1, current_pos-1)+dp(steps-1, current_pos)`
+
+```python
+class Solution():
+    def numWays(self, steps, arrLen):
+        # Time : 0.085m
+        j_max = min(steps, arrLen)
+        result_table = [[0 for _ in range(j_max)] for _ in range(steps+1)] 
+        result_table[0][0] = 1
+        MOD = 10**9 + 7
+        
+        for i in range(1, steps+1):
+            result_table[i][0] = (result_table[i-1][0] + result_table[i-1][1]) % MOD
+            for j in range(1, j_max-1):
+                result_table[i][j] = (result_table[i-1][j-1] + result_table[i-1][j] + \
+                    result_table[i-1][j+1]) % MOD
+            result_table[i][j_max-1] = (result_table[i-1][j_max-2] + result_table[i-1][j_max-1]) % MOD
+                
+        return result_table[-1][0]
 ```
