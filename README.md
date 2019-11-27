@@ -43,7 +43,7 @@ Note: The probability of the Random Contraction algorithm is 2/[n(n-1)]. It is a
 
 ## Leetcode
 
-This folder keeps all the resolution code of [LeetCode](https://leetcode.com/) I wrote, which includes the comprehension of the problems.
+This folder keeps all the solution codes of [LeetCode](https://leetcode.com/) I wrote, which includes the comprehension of the problems.
 
 The format of file names：The number of the problem in website_the name of problem
 ```
@@ -51,7 +51,7 @@ The structure of the folder
 --Leetcode
     |
     |- Basic : The Subject of Basic Algorithm in the Leetcode Explore
-    |- Competition : The resolutions of the weekly competitions
+    |- Competition : The solutions of the weekly competitions
 ```
 
 ## Templates

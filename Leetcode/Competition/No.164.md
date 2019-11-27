@@ -407,3 +407,29 @@ class Solution():
                 
         return result_table[-1][0]
 ```
+
+因为计算结果只需要返回`result_table[-1][0]`，所以实际上表格右下角的计算是多余的。我们可以进一步对右下角进行优化。
+
+```python
+class Solution():
+    def numWays(self, steps, arrLen):
+        j_max = min(steps, arrLen)
+        result_table = [[0] * min(j_max, steps-i+1) for i in range(steps+1)]
+        result_table[0][0] = 1
+        MOD = 10**9 + 7
+        
+        # Note: After optimizing the right-down space, maybe the several rows at the top have
+        # the same length of the rows. When (steps-i+1) is smaller than j_max, 
+        # the len(dp[i]) = len(dp[i-1])-1
+        for i in range(1, steps+1): 
+            for j in range(len(result_table[i])):
+                if j == 0:
+                    result_table[i][j] = (result_table[i-1][0] + result_table[i-1][1]) % MOD
+                elif j == j_max -1:
+                    result_table[i][j] = (result_table[i-1][j-1] + result_table[i-1][j]) % MOD
+                else:
+                    result_table[i][j] = (result_table[i-1][j-1] + result_table[i-1][j] + \
+                        result_table[i-1][j+1]) % MOD
+                
+        return result_table[-1][0]
+```
