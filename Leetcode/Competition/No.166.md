@@ -1,4 +1,4 @@
-# 第166场周赛
+# No. 166 Weekly Competition
 
 > Rank: 350/1675。
 
