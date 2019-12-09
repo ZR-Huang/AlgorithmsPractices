@@ -1,11 +1,11 @@
 # 第166场周赛
 
-> 全国排名为350/1675。
+> Rank: 350/1675。
 
-- [Solved] 表示在比赛中解出。
-- [Unsolved] 表示在比赛中未能解出。
+- [Solved] stands for that the problems are solved in the competition。
+- [Unsolved] stands for that I failed to solve them in the competition。
 
-## [Solved] 5279. Subtract the Product and Sum of Digits of an Integer
+## [Solved] 1281. Subtract the Product and Sum of Digits of an Integer
 
 ### Description：
 
@@ -76,7 +76,7 @@ class Solution:
         return prod - _sum
 ```
 
-## [Solved] 5280. Group the People Given the Group Size They Belong To
+## [Solved] 1282. Group the People Given the Group Size They Belong To
 
 
 ### Description:
@@ -135,7 +135,7 @@ class Solution:
         return result
 ```
 
-## [Solved] 5281. Find the Smallest Divisor Given a Threshold
+## [Solved] 1283. Find the Smallest Divisor Given a Threshold
 
 ### Description:
 
@@ -200,4 +200,101 @@ class Solution:
         return result
 ```
 
+## [Unsolved] 1284. Minimum Number of Flips to Convert Binary Matrix to Zero Matrix
 
+### Description:
+
+Given a `m x n` binary matrix `mat`. In one step, you can choose one cell and flip it and all the four neighbours of it if they exist (Flip is changing 1 to 0 and 0 to 1). A pair of cells are called neighboors if they share one edge.
+
+Return the minimum number of steps required to convert `mat` to a zero matrix or **-1** if you cannot.
+
+Binary matrix is a matrix with all cells equal to 0 or 1 only.
+
+Zero matrix is a matrix with all cells equal to 0.
+
+### Example 1:
+![](https://assets.leetcode.com/uploads/2019/11/28/matrix.png)
+
+```
+Input: mat = [[0,0],[0,1]]
+Output: 3
+Explanation: One possible solution is to flip (1, 0) then (0, 1) and finally (1, 1) as shown.
+```
+
+### Example 2:
+```
+Input: mat = [[0]]
+Output: 0
+Explanation: Given matrix is a zero matrix. We don't need to change it.
+```
+
+### Example 3:
+```
+Input: mat = [[1,1,1],[1,0,1],[0,0,0]]
+Output: 6
+```
+
+### Example 4:
+```
+Input: mat = [[1,0,0],[1,0,0]]
+Output: -1
+Explanation: Given matrix can't be a zero matrix
+```
+
+### Constraints:
+- `m == mat.length`
+- `n == mat[0].length`
+- `1 <= m <= 3`
+- `1 <= n <= 3`
+- `mat[i][j] is 0 or 1`
+
+### Idea:
+> We store the states which are visited in a hashmap, and use the breadth first searching algorithm to enumerate all the flipping states. If the states are not visited before, we append them into the queue.
+> ——"[bfs 枚举，并记录矩阵状态](https://leetcode-cn.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix/solution/bfs-mei-ju-by-tfboy96/)"
+
+```python
+# Time complexity : O(2**(nm))
+# Space complexity : O(2**(nm))
+from collections import deque
+from copy import deepcopy
+
+class Solution:
+    def minFlips(self, mat):
+        m = len(mat)
+        n = len(mat[0])
+        visited = set()
+        
+        # bfs
+        q = deque()
+        q.append(mat)
+        visited.add(str(mat))
+        target = [[0]*n for _ in range(m)]
+
+        result = 0
+        while q:
+            for _ in range(len(q)):
+                current_state = q.popleft()
+                if current_state == target:
+                    return result
+                
+                for i in range(m):
+                    for j in range(n):
+                        current_copy = deepcopy(current_state)
+                        current_copy[i][j] = 1-current_copy[i][j]
+
+                        if 0 <= i-1 <= m-1 and 0<= j <= n-1:
+                            current_copy[i-1][j] = 1-current_copy[i-1][j]
+                        if 0 <= i+1 <= m-1 and 0<= j <= n-1:
+                            current_copy[i+1][j] = 1-current_copy[i+1][j]
+                        if 0 <= i <= m-1 and 0 <= j+1 <= n-1:
+                            current_copy[i][j+1] = 1- current_copy[i][j+1]
+                        if 0 <= i <= m-1 and 0 <= j-1 <= n-1:
+                            current_copy[i][j-1] = 1-current_copy[i][j-1]
+
+                        _str = str(current_copy)
+                        if _str not in visited:
+                            visited.add(_str)
+                            q.append(current_copy)
+            result += 1
+        return -1
+```
