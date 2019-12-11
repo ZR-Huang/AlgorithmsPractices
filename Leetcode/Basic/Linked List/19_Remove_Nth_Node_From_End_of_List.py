@@ -38,3 +38,20 @@ class Solution:
         node.next = node.next.next
 
         return head
+
+    def removeNthFromEnd_v2(self, head, n):
+        # do this in one pass
+        nodes = []
+        node = head
+        while node:
+            nodes.append(node)
+            node = node.next
+        
+        if len(nodes) == 1:
+            return None
+        if len(nodes)-n == 0:
+            head = head.next
+            return head
+        
+        nodes[len(nodes)-n-1].next = nodes[len(nodes)-n-1].next.next
+        return head
