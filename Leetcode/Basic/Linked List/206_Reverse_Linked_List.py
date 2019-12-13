@@ -33,7 +33,33 @@ class Solution:
 
     
     def reverseList_2(self, head):
-        # reverse the linked list recurisively
-        pass
+        # reverse the linked list using two pointers
+        if not head or not head.next:
+            return head
         
+        rev_head = None
+        while head:
+            temp = head
+            head = head.next
+            temp.next = rev_head
+            rev_head = temp
+        
+        return rev_head
+
+
+    def reverseList_3(self, head):
+        # do it recursively
+        def reverse(head):
+            if not head or not head.next:
+                return head, head
             
+            rev_head, tail = reverse(head.next)
+            tail.next = head
+            tail = tail.next
+
+            return rev_head, tail
+
+        rev_head, tail = reverse(head)
+        if tail:
+            tail.next = None
+        return rev_head
