@@ -1,7 +1,10 @@
 '''
+This is a solution of the problem of No.167 Weekly Competition
+
 1292. Maximum Side Length of a Square with Sum Less than or Equal to Threshold
 This problem can be solved by the prefix sum algorithm,
 but the code in python will exceed the time limitation.
+Link: https://leetcode-cn.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/
 
 This implemented code is just presented as the template of the 
 prefix sum algorithm

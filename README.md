@@ -62,4 +62,5 @@ The implementation of the basic functions of different algorithms which can be q
 - Trie Tree
 - Dynamic Programming
 - Dictionary Order Algorithm
-  
+- Prefix Sum
+- Breadth First Search
