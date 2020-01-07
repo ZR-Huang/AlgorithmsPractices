@@ -15,27 +15,37 @@ minStack.pop();
 minStack.top();      --> Returns 0.
 minStack.getMin();   --> Returns -2.
 '''
-
+from collections import deque
 class MinStack:
 
     def __init__(self):
         """
         initialize your data structure here.
         """
-        pass
+        self.s1 = deque()
+        self.s2 = deque()
         
 
     def push(self, x: int) -> None:
-        pass
+        self.s1.append(x)
+        if not self.s2:
+            self.s2.append(x)
+        elif x <= self.s2[-1]:
+            self.s2.append(x)
+
 
     def pop(self) -> None:
-        pass
+        x = self.s1.pop()
+        if self.s2 and x == self.s2[-1]:
+            self.s2.pop()
+
 
     def top(self) -> int:
-        pass
+        return self.s1[-1] if self.s1 else None
+
 
     def getMin(self) -> int:
-        pass
+        return self.s2[-1] if self.s2 else None
 
 
 # Your MinStack object will be instantiated and called as such:
