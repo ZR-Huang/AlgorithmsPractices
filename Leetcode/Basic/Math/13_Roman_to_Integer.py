@@ -51,3 +51,31 @@ Input: "MCMXCIV"
 Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 '''
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        r_to_n = {'I':1, 'V': 5, 'X': 10, 'L': 50, 'C':100, 'D':500, 'M':1000}
+        subtraction = {'IV':4, 'IX':9, 'XL':40, 'XC': 90, 'CD':400, 'CM':900}
+        length = len(s)
+        
+        if length == 1:
+            return r_to_n[s]
+        
+        ans = 0 
+        i, j = 0, 1
+        while j <= length - 1:
+            if s[i]+s[j] in subtraction:
+                ans += subtraction[s[i]+s[j]]
+                i += 2
+                j += 2
+            else:
+                ans += r_to_n[s[i]]
+                i += 1
+                j += 1
+            
+        if i == length - 1:
+            ans += r_to_n[s[i]]
+
+        return ans
+        
+print(Solution().romanToInt("MCDLXXVI"))
