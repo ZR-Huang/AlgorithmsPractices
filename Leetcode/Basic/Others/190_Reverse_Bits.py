@@ -18,3 +18,14 @@ Note:
 Follow up:
 If this function is called many times, how would you optimize it?
 '''
+
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        ans = 0
+        for _ in range(32):
+            ans <<= 1
+            ans |= (n % 2)
+            n >>= 1
+        return ans
+
+print(Solution().reverseBits(43261596))
