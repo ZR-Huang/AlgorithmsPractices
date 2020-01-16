@@ -12,4 +12,11 @@ If you have figured out the O(n) solution, try coding another solution using the
 
 class Solution:
     def maxSubArray(self, nums) -> int:
-        pass
+        # greedy
+        curr_sum = max_sum = nums[0]
+
+        for i in range(1, len(nums)):
+            curr_sum = max(nums[i], nums[i]+curr_sum)
+            max_sum = max(curr_sum, max_sum)
+
+        return max_sum
