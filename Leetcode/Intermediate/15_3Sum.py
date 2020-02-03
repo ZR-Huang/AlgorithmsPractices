@@ -16,35 +16,36 @@ A solution set is:
 '''
 class Solution:
     def threeSum(self, nums):
-        def two_sum(nums, fixed_index, target):
+        def two_sum(nums, target):
             d = {}
             result = []
             for index, value in enumerate(nums):
-                if index == fixed_index:
-                    continue
+                if (target-value) in d:
+                    result.append([target-value, value])
                 else:
-                    if (target-value) in d:
-                        result.append([target-value, value])
-                        # return [target-value, value]
-                    else:
-                        d[value] = True
+                    d[value] = True
 
             return result
         
-        ans = set()
+        nums.sort()
+        ans = []
         found = set() # store the triplets which are already found.
         for index, a in enumerate(nums):
-            result = two_sum(nums, index, 0-a)
+            if a > 0:
+                break # if a > 0, it is impossible that the nums after a meet the requirements
+            if index > 0 and nums[index] == nums[index-1]:
+                continue # if a equals to the previous element, then jump it to avoid duplicated triplets.
+
+            result = two_sum(nums[index+1:], 0-a)
             if result:
                 for b, c in result:
-                # b, c = result
                     # frozenset is immutable and hashable, set is mutable and unhashable
                     triplets = frozenset([a, b, c]) 
                     if triplets not in found:
-                        ans.add((a, b, c))
+                        ans.append([a,b,c])
                         found.add(triplets)
         
-        return list(map(list, ans))
+        return ans
 
 
-print(Solution().threeSum([3,0,-2,-1,1,2]))
+print(Solution().threeSum([0,0,0,0,0,0]))
