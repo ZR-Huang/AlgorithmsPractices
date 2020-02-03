@@ -64,3 +64,4 @@ The implementation of the basic functions of different algorithms which can be q
 - Dictionary Order Algorithm
 - Prefix Sum
 - Breadth First Search
+- Binary Search
