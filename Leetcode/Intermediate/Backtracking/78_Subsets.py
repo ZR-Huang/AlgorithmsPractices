@@ -11,7 +11,6 @@ class Solution:
 
         def select_elem(i, n, selected_list):
             result.append(selected_list)
-            
             for j in range(i, n):
                 select_elem(j+1, n, selected_list+[nums[j]])
 
