@@ -65,3 +65,4 @@ The implementation of the basic functions of different algorithms which can be q
 - Prefix Sum
 - Breadth First Search
 - Binary Search
+- Quick Sort
