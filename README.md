@@ -66,3 +66,5 @@ The implementation of the basic functions of different algorithms which can be q
 - Breadth First Search
 - Binary Search
 - Quick Sort
+- Heap
+- Heap Sort
