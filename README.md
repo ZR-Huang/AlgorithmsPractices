@@ -68,3 +68,4 @@ The implementation of the basic functions of different algorithms which can be q
 - Quick Sort
 - Heap
 - Heap Sort
+- String Match (Brute Force, Rabin-Karp, Boyer-Moore)
