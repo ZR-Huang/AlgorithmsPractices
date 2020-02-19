@@ -21,9 +21,6 @@ class Solution:
             else:
                 d[value] = index
 
-        
-            
-
 
 print(Solution().twoSum_v2([2, 11, 7, -1, -2, 11, 15], 0))
 print(Solution().twoSum_v2([3, 2, 4], 6))
