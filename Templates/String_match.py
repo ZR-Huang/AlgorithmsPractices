@@ -88,15 +88,56 @@ class Solution():
             
         return -1
 
+    def kmp(self, A: str, B: str) -> int:
+        def search(main_text, pattern, pmt):
+            i, j = 0, 0
+            while i < len(main_text) and j < len(pattern):
+                if j == -1 or main_text[i] == pattern[j]:
+                    i += 1
+                    j += 1
+                else:
+                    j = pmt[j]
+            if j == len(pattern):
+                return i - j
+            else:
+                return -1
         
+        def getPMT(pattern):
+            pmt = [0] * (len(pattern)+1)
+            pmt[0] = -1
+            i, j = 0, -1
+            while i < len(pattern):
+                if j == -1 or pattern[i] == pattern[j]:
+                    i += 1
+                    j += 1
+                    pmt[i] = j
+                else:
+                    j = pmt[j]
+            return pmt
 
+        pmt = getPMT(B)
+        return search(A, B, pmt)
+                    
+        
+import time
+start = time.time()
 print(Solution().my_solution("abcdefgh", "cdef"))
 print(Solution().my_solution("abcdefgh", "bcdg"))
 print(Solution().my_solution("abcdefghijkefghijklefghijklmnopqefghijklmnopqrsturstumnopqrstulmnopqrstuvwxyz", "efghijklmnopqrstu"))
+print("Brute Force:",time.time()-start)
+start = time.time()
 print(Solution().Rabin_Karp("abcdefgh", "cdef"))
 print(Solution().Rabin_Karp("abcdefgh", "bcdg"))
 print(Solution().Rabin_Karp("abcdefghijkefghijklefghijklmnopqefghijklmnopqrsturstumnopqrstulmnopqrstuvwxyz", "efghijklmnopqrstu"))
+print("Rabin Karp:",time.time()-start)
+start = time.time()
 print(Solution().Boyer_Moore("TGGGCGAGCGGAA", "CGAGCG"))
 print(Solution().Boyer_Moore("abcdefgh", "cdef"))
 print(Solution().Boyer_Moore("abcdefgh", "bcdg"))
 print(Solution().Boyer_Moore("abcdefghijkefghijklefghijklmnopqefghijklmnopqrsturstumnopqrstulmnopqrstuvwxyz", "efghijklmnopqrstu"))
+print("Boyer Moore:",time.time()-start)
+start = time.time()
+print(Solution().kmp("abcdefgh", "cdef"))
+print(Solution().kmp("abcdefgh", "bcdg"))
+print(Solution().kmp("abcdefghijkefghijklefghijklmnopqefghijklmnopqrsturstumnopqrstulmnopqrstuvwxyz", "efghijklmnopqrstu"))
+print("KMP:",time.time()-start)
