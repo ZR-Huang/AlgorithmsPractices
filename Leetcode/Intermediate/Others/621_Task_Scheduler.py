@@ -45,7 +45,8 @@ class Solution:
                 ans += count
         return ans 
     
-
+    # Analysis:
+    # https://leetcode-cn.com/problems/task-scheduler/solution/ren-wu-diao-du-qi-by-leetcode/
     def leastInterval(self, tasks: List[str], n: int) -> int:
         tasks_count = [0]*26
         for task in tasks:
