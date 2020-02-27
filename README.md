@@ -1,6 +1,7 @@
 # Algorithms Practices
 
-> This repository is used to store the codes I implemented when I learn about algorithm. 
+> This repository collects all the solutions to 
+problems I solved and template codes of some wide-use algorithms.
 
 ## Source code of Grokking Algorithms
 
@@ -46,13 +47,14 @@ Note: The probability of the Random Contraction algorithm is 2/[n(n-1)]. It is a
 This folder keeps all the solution codes of [LeetCode](https://leetcode.com/) I wrote, which includes the comprehension of the problems.
 
 The format of file names：The number of the problem in website_the name of problem
-```
-The structure of the folder
---Leetcode
-    |
-    |- Basic : The Subject of Basic Algorithm in the Leetcode Explore
-    |- Competition : The solutions of the weekly competitions
-```
+
+The structure of this folder:
+- [Basic](https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/) : The subject of Basic Algorithm in Leetcode Explore
+- [Intermediate](https://leetcode-cn.com/explore/interview/card/top-interview-questions-medium/) : The subject of Intermediate in LeetCodee Explore
+- [Coding Interviews](https://leetcode-cn.com/problemset/lcof/) : The collection of all the problems of [《Coding Interviews》](https://book.douban.com/subject/6966465//)
+- Others : Other problems I solved on LeetCode are collected in here.
+- Competition : The solutions to the weekly competitions.
+
 
 ## Templates
 
@@ -69,3 +71,4 @@ The implementation of the basic functions of different algorithms which can be q
 - Heap
 - Heap Sort
 - String Match (Brute Force, Rabin-Karp, Boyer-Moore, KMP)
+- Merge Sort

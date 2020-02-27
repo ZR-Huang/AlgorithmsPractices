@@ -18,7 +18,7 @@ class TestSolutionMethods(unittest.TestCase):
         array = [2,3,5,4,3,2,6,7]
         self.assertIn(s.get_duplication(array), [2, 3])
 
-
+# Here is the solution to the problem on Nowcoder.
 class Solution:
     """
     There are two solutions. First, we can create a helper array 

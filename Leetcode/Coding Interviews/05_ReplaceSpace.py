@@ -1,14 +1,24 @@
+'''
+请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
+
+示例 1：
+输入：s = "We are happy."
+输出："We%20are%20happy."
+
+限制：
+0 <= s 的长度 <= 10000
+'''
 class Solution:
-    def replaceSpace(self, s):
+    def replaceSpace(self, s: str) -> str:
         """
-        According to the time complexity of the basic operation of Python3,
-        we analyze the complexity of our code.
         list(s) : O(N), the length of the string is donated as N.
         iterate the string : O(N)
         list assignment: O(1)
         join() : O(N)
         Total: O(N) 
         """
+        if not s:
+            return ''
         s_list = list(s)
         for i in range(len(s)):
             if s_list[i] == " ":
