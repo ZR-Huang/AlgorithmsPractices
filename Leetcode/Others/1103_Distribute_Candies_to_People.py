@@ -40,6 +40,8 @@ from typing import List
 class Solution:
     def distributeCandies(self, candies: int, num_people: int) -> List[int]:
         # simulate
+        # time: O(max(G^0.5, N)), G = number of candies, N = number of people
+        # space: O(N)
         ans = [0] * num_people
         i = 0
         while candies > 0:
@@ -52,6 +54,26 @@ class Solution:
                 candies -= i
         
         return ans
+
+    def distributeCandies(self, candies: int, num_people: int) -> List[int]:
+        # Sum of Arithmetic Sequences
+        # time : O(N)
+        # space : O(N)
+        # how many people received complete gifts
+        p = int((2 * candies + 0.25)**0.5 - 0.5)
+        remain = int(candies-(p+1)*p*0.5)
+        rows, cols = p // num_people, p % num_people
+
+        d = [0]* num_people
+        for i in range(num_people):
+            # complete rows
+            d[i] = (i+1) * rows + int(rows*(rows-1)*0.5) * num_people
+            # cols in the last row
+            if i < cols:
+                d[i] += (i+1) + rows * num_people
+        # remaining candies
+        d[cols] += remain
+        return d
 
 print(Solution().distributeCandies(7,4))
 print(Solution().distributeCandies(10,3))
