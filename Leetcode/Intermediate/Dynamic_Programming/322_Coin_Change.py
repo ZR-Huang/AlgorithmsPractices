@@ -51,8 +51,20 @@ class Solution:
             dp[amount] = ans if ans != 10**10 else -1
             return dp[amount]
         return helper(coins, amount, dp)
+
+    def coinChange_v3(self, coins: List[int], amount: int) -> int:
+        # dynamic programming
+        dp = [0] * (amount+1)
+        for i in range(1, amount+1):
+            tmp = []
+            for coin in coins:
+                if i - coin >= 0 and dp[i-coin] > -1:
+                    tmp.append(dp[i-coin])
+            dp[i] = min(tmp)+1 if tmp else -1
+        return dp[-1]
+        
             
 
-print(Solution().coinChange([1,2,5], 11))
-print(Solution().coinChange([2], 3))
-print(Solution().coinChange_v2([186,419,83,408],6249))
+print(Solution().coinChange_v3([1,2,5], 11))
+print(Solution().coinChange_v3([2], 3))
+print(Solution().coinChange_v3([186,419,83,408],6249))
