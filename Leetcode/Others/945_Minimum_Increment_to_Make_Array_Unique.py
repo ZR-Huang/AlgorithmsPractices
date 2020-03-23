@@ -31,4 +31,23 @@ class Solution:
                 move += (A[i-1] + 1 - A[i])
                 A[i] = A[i-1] + 1
         return move
-                
+    
+
+    def minIncrementForUnique(self, A: List[int]) -> int:
+        # https://leetcode-cn.com/problems/minimum-increment-to-make-array-unique/solution/ji-shu-onxian-xing-tan-ce-fa-onpai-xu-onlogn-yi-ya/
+        def find_pos(a, pos):
+            b = pos[a]
+            if b == -1: # 如果该位置为空，则返回该位置
+                pos[a] = a
+                return a
+            
+            b = find_pos(b+1, pos) # 从b+1开始探测下一个空位置即可
+            pos[a] = b # 寻址后的新空位要赋值给pos[a]，路径压缩
+            return b
+        
+        pos = [-1] * 80000
+        move = 0
+        for num in A:
+            b = find_pos(num, pos)
+            move += b-num
+        return move
