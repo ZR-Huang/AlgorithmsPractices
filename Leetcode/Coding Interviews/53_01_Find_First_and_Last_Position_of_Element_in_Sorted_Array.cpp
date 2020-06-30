@@ -52,6 +52,20 @@ public:
             count++;
         return count;
     }
+
+    int search_v3(vector<int>& nums, int target) {
+        return helper(nums, target)-helper(nums, target-1);
+    }
+
+    int helper(vector<int>& nums, int target) {
+        int i = 0, j = nums.size()-1;
+        while(i <= j){
+            int m = (i + j) / 2;
+            if(nums[m] <= target) i = m + 1;
+            else j = m - 1;
+        }
+        return i;
+    }
 };
 
 int main(){

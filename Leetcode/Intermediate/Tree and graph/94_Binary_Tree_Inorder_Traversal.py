@@ -47,8 +47,8 @@ class Solution:
         ans = []
         
         curr_node = root
-        while (not curr_node) or stack:
-            while not curr_node:
+        while (curr_node) or stack:
+            while curr_node:
                 stack.append(curr_node)
                 curr_node = curr_node.left
             
