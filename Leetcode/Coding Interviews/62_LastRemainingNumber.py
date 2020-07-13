@@ -28,6 +28,14 @@ class Solution:
         return arr[0]
 
     def lastRemaining(self, n: int, m: int) -> int:
+        def f(n, m):
+            if n==1:
+                return 0
+            x = f(n-1, m)
+            return (m+x) % n
+        return f(n, m)
+
+    def lastRemaining(self, n: int, m: int) -> int:
         # 约瑟夫环问题，数学解法
         # https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/javajie-jue-yue-se-fu-huan-wen-ti-gao-su-ni-wei-sh/
         ans = 0
