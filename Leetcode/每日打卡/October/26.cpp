@@ -29,3 +29,41 @@ Constraints:
 	2 <= nums.length <= 500
 	0 <= nums[i] <= 100
 */
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+        int len = nums.size();
+        vector<int> ans (len, 0);
+        for (int i = 0; i < len; i++){
+            for (int j = 0; j < len; j++){
+                if (i == j) continue;
+                else if (nums[j] < nums[i]) ans[i]++;
+            }
+        }
+        return ans;
+    }
+
+    vector<int> sortAndHash(vector<int>& nums) {
+        vector<pair<int, int>> data;
+        for(int i = 0; i < nums.size(); i++){
+            data.emplace_back(nums[i], i);
+        }
+
+        sort(data.begin(), data.end());
+        vector<int> ans(nums.size(), 0);
+        int prev = -1;
+        for(int i = 0; i < nums.size(); i++) {
+            if (prev == -1 || data[i].first != data[i-1].first){
+                prev = i;
+            }
+            ans[data[i].second] = prev;
+        }
+        return ans;
+    }
+};
